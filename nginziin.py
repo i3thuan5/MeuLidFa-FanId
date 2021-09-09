@@ -3,19 +3,26 @@ import re
 import csv
 import io
 from urllib.request import urlopen
+from os import makedirs
+from os.path import join
 
 mai_lukdui = re.compile('（.+?）')
 
 
 def main():
-    for hang in ngin():
-        for meu, fa in zip(
-            hang['例句'].split('\n'), hang['翻譯'].split('\n')
-        ):
-            meu = meu.strip()
-            fa = fa.strip()
-            if meu:
-                print(mai_lukdui.sub('', meu), fa)
+    miang = 'ngiliau'
+    makedirs(miang, exist_ok=True)
+    with open(join(miang, 'meu.all'), 'wt') as meu_dong:
+        with open(join(miang, 'fa.all'), 'wt') as fa_dong:
+            for hang in ngin():
+                for meu, fa in zip(
+                    hang['例句'].split('\n'), hang['翻譯'].split('\n')
+                ):
+                    meu = meu.strip()
+                    fa = fa.strip()
+                    if meu:
+                        print(mai_lukdui.sub('', meu), file=meu_dong)
+                        print(fa, file=fa_dong)
 
 
 def ngin():
