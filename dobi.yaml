@@ -17,13 +17,13 @@ job=don-ngiliau: # 斷詞斷字語料
   command: |
     bash -eux -c '
       cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
-        | head -n -1000 > /doncii-ngiliau/meu.train
+        | head -n 500 > /doncii-ngiliau/meu.valid
       cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
-        | tail -n 1000 > /doncii-ngiliau/meu.valid
+        | tail -n -500 > /doncii-ngiliau/meu.train
       cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
-        | head -n -1000 > /doncii-ngiliau/fa.train
+        | head -n 500 > /doncii-ngiliau/fa.valid
       cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
-        | tail -n 1000 > /doncii-ngiliau/fa.valid
+        | tail -n -500 > /doncii-ngiliau/fa.train
     '
   mounts: [ngienbun_ngiliau, doncii_ngiliau, ]
 
