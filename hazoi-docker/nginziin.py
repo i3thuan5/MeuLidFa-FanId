@@ -10,7 +10,7 @@ mai_lukdui = re.compile('（.+?）')
 
 
 def main():
-    miang = 'ngiliau'
+    miang = '/ngienbun-ngiliau'
     makedirs(miang, exist_ok=True)
     with open(join(miang, 'meu.all'), 'wt') as meu_dong:
         with open(join(miang, 'fa.all'), 'wt') as fa_dong:

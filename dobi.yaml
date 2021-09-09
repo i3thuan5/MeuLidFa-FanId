@@ -2,22 +2,20 @@ meta:
     project: opennmt
 
 alias=zunpi-ngiliau:
-  tasks: [hazoi-ngiliau, zunpi-ngiliau,toncii, hiunlien]
+  tasks: [hazoi-ngiliau, zunpi-ngiliau, ] #toncii, hiunlien]
 
 job=hazoi-ngiliau: # 下載語料
   use: hazoi_docker
   command: |
     bash -eux -c '
       python nginziin.py
-      cp ngiliau/* /ngiliau/
     '
-  mounts: [ngienbun_giliau, ]
+  mounts: [ngienbun_ngiliau, ]
 
 job=zunpi-giliau:
   use: hazoi_docker
   command: |
     bash -eux -c '
- 
       cat /ngienbun_giliau/meu.txt | sed 's/\(.\)/\1 /g' \
         | head -n -1000 > /doncii_giliau/meu.train
       cat /ngienbun_giliau/meu.txt | sed 's/\(.\)/\1 /g' \
@@ -27,41 +25,34 @@ job=zunpi-giliau:
       cat /ngienbun_giliau/fa.txt  | sed 's/\(.\)/\1 /g' \
         | tail -n 1000 > /doncii_giliau/fa.valid
     '
-  mounts: [ngienbun_giliau, doncii_giliau, ]
+  mounts: [ngienbun_ngiliau, doncii_ngiliau, ]
 
-mount=ngienbun_giliau: # 原本語料
-  bind: ./1-ngienbun-giliau/
-  path: /ngienbun-giliau/
+mount=ngienbun_ngiliau: # 原本語料
+  bind: ./1-ngienbun-ngiliau/
+  path: /ngienbun-ngiliau/
 
 mount=doncii_ngiliau: # 斷詞語料
   bind: ./2-doncii-ngiliau/
   path: /doncii-ngiliau/
 
-mount=data:
-  bind: ./{env.PANPUN}-data/
+mount=opennmt_data:
+  bind: ./3-opennmt-data/
   path: /data/
 
-mount=model:
-    bind: ./{env.PANPUN}-model/
-    path: /model/
+mount=opennmt_model:
+  bind: ./4-opennmt-model/
+  path: /model/
 
-image=ngiliau_docker:
-  image: ngiliau_docker
-  context: ngiliau_docker
+image=hazoi_docker:
+  image: hazoi-docker
+  context: hazoi-docker
 
-image=opennmt-docker:
+image=opennmt_docker:
   image: opennmt-docker
   context: opennmt-docker
 
-job=hua-tngsu:
-  use: tngsu
-  command: python tngsu.py /huetshut_e_giliau/ /tngsu_giliau/
-  mounts: [huetshut_e_giliau, tngsu_giliau, ]
-     
-
-
 job=taihua-preprocess:
-  use: hunlian-khuanking
+  use: opennmt_docker
   command: |
     bash -eux -c '
       onmt_preprocess \
@@ -71,31 +62,18 @@ job=taihua-preprocess:
         -valid_tgt /giliau/huagi.valid \
         -save_data /data/
     '
-  mounts: [giliau, data]
-
-job=huatai-preprocess:
-  use: hunlian-khuanking
-  command: |
-    bash -eux -c '
-      onmt_preprocess \
-        -train_src /giliau/huagi.train \
-        -train_tgt /giliau/taigi.train \
-        -valid_src /giliau/huagi.valid \
-        -valid_tgt /giliau/taigi.valid \
-        -save_data /data/
-    '
-  mounts: [giliau, data]
+  mounts: [doncii_ngiliau, opennmt_data]
 
 job=hunlian:
-  use: hunlian-khuanking
+  use: opennmt_docker
   command: |
     bash -eux -c '
       onmt_train -data /data/ -save_model /model/demo-model -gpu_ranks 0
     '
-  mounts: [data, model]
+  mounts: [opennmt_data, opennmt_model]
 
 job=huan:
-  use: hunlian-khuanking
+  use: opennmt_docker
   command: |
     bash -eux -c '
       echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" > hua.txt
@@ -104,4 +82,4 @@ job=huan:
       onmt_translate -model /model/demo-model_step_100000.pt -src hua.txt -output pred-tai.txt -replace_unk -verbose # -gpu_ranks 0
       cat pred-tai.txt
     '
-  mounts: [data, model]
+  mounts: [opennmt_data, opennmt_model]
