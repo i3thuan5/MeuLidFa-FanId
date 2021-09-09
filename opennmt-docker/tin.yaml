@@ -24,3 +24,15 @@ save_model: toy-ende/run/model
 save_checkpoint_steps: 5000
 train_steps: 100000
 valid_steps: 10000
+
+# this means embeddings will be used for both encoder and decoder sides
+both_embeddings: glove_dir/glove.6B.100d.txt
+# to set src and tgt embeddings separately:
+# src_embeddings: ...
+# tgt_embeddings: ...
+
+# supported types: GloVe, word2vec
+embeddings_type: "GloVe"
+
+# word_vec_size need to match with the pretrained embeddings dimensions
+word_vec_size: 100
