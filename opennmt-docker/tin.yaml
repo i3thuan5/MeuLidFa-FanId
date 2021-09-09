@@ -1,0 +1,26 @@
+## Where the samples will be written
+save_data: /data/run/meufa
+## Where the vocab(s) will be written
+src_vocab: /data/run/meufa.vocab.src
+tgt_vocab: /data/run/meufa.vocab.tgt
+# Prevent overwriting existing files in the folder
+overwrite: False
+
+# Corpus opts:
+data:
+    nginciin:
+        path_src: /doncii-ngiliau/fa.train
+        path_tgt: /doncii-ngiliau/meu.train
+    valid:
+        path_src: /doncii-ngiliau/fa.valid
+        path_tgt: /doncii-ngiliau/meu.valid
+
+# Train on a single GPU
+world_size: 1
+gpu_ranks: [0]
+
+# Where to save the checkpoints
+save_model: toy-ende/run/model
+save_checkpoint_steps: 5000
+train_steps: 100000
+valid_steps: 10000
