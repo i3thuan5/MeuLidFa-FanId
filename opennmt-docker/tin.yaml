@@ -21,6 +21,6 @@ gpu_ranks: [0]
 
 # Where to save the checkpoints
 save_model: toy-ende/run/model
-save_checkpoint_steps: 500
+save_checkpoint_steps: 5000
 train_steps: 100000
-valid_steps: 500
+valid_steps: 10000
