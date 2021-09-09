@@ -76,10 +76,10 @@ job=huan:
   use: opennmt_docker
   command: |
     bash -eux -c '
-      echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" > hua.txt
-      echo "詞是最小有意義且可以自由使用的語言單位" >> hua.txt
-      echo "逐-家｜tak8-ke1 做-伙｜tso3-hue2 來｜lai5 𨑨-迌｜tshit4-tho5 ！｜!" >> hua.txt
-      onmt_translate -model /model/demo-model_step_100000.pt -src hua.txt -output pred-tai.txt -replace_unk -verbose # -gpu_ranks 0
-      cat pred-tai.txt
+      echo "詞 是 最 小 有 意 義 且 可 以 自 由 使 用 的 語 言 單 位" > fa.txt
+      echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" > fa.txt
+      echo "詞是最小有意義且可以自由使用的語言單位" >> fa.txt
+      onmt_translate -model /model/meufa-model_step_100000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose # -gpu_ranks 0
+      cat pred-meu.txt
     '
   mounts: [opennmt_data, opennmt_model]
