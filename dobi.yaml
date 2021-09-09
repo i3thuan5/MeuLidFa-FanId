@@ -16,14 +16,14 @@ job=zunpi-giliau:
   use: hazoi_docker
   command: |
     bash -eux -c '
-      cat /ngienbun_giliau/meu.txt | sed 's/\(.\)/\1 /g' \
-        | head -n -1000 > /doncii_giliau/meu.train
-      cat /ngienbun_giliau/meu.txt | sed 's/\(.\)/\1 /g' \
-        | tail -n 1000 > /doncii_giliau/meu.valid
-      cat /ngienbun_giliau/fa.txt  | sed 's/\(.\)/\1 /g' \
-        | head -n -1000 > /doncii_giliau/fa.train
-      cat /ngienbun_giliau/fa.txt  | sed 's/\(.\)/\1 /g' \
-        | tail -n 1000 > /doncii_giliau/fa.valid
+      cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
+        | head -n -1000 > /doncii-ngiliau/meu.train
+      cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
+        | tail -n 1000 > /doncii-ngiliau/meu.valid
+      cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
+        | head -n -1000 > /doncii-ngiliau/fa.train
+      cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
+        | tail -n 1000 > /doncii-ngiliau/fa.valid
     '
   mounts: [ngienbun_ngiliau, doncii_ngiliau, ]
 
