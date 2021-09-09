@@ -55,12 +55,7 @@ job=zunpi-ngiliau:
   use: opennmt_docker
   command: |
     bash -eux -c '
-      onmt_preprocess \
-        -train_src /doncii-ngiliau/fa.train \
-        -train_tgt /doncii-ngiliau/meu.train \
-        -valid_src /doncii-ngiliau/fa.valid \
-        -valid_tgt /doncii-ngiliau/meu.valid \
-        -save_data /data/
+      onmt_build_vocab -config tin.yaml -n_sample -1
     '
   mounts: [doncii_ngiliau, opennmt_data]
 
@@ -68,7 +63,7 @@ job=hiunlien:
   use: opennmt_docker
   command: |
     bash -eux -c '
-      onmt_train -data /data/ -save_model /model/meufa-model -gpu_ranks 0
+      onmt_train -config tin.yaml
     '
   mounts: [opennmt_data, opennmt_model]
 
