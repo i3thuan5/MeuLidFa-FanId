@@ -65,7 +65,7 @@ job=hiunlien:
     bash -eux -c '
       onmt_train -config tin.yaml
     '
-  mounts: [opennmt_data, opennmt_model]
+  mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
 
 job=fan:
   use: opennmt_docker
