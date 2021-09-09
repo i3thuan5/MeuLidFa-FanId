@@ -26,7 +26,7 @@ train_steps: 100000
 valid_steps: 10000
 
 # this means embeddings will be used for both encoder and decoder sides
-both_embeddings: glove_dir/glove.6B.100d.txt
+both_embeddings: /glove_dir/glove.6B.100d.txt
 # to set src and tgt embeddings separately:
 # src_embeddings: ...
 # tgt_embeddings: ...

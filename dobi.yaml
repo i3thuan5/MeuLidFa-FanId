@@ -43,6 +43,12 @@ mount=opennmt_model:
   bind: ./4-opennmt-model/
   path: /model/
 
+mount=glove:
+  # https://opennmt.net/OpenNMT-py/FAQ.html#how-do-i-use-pretrained-embeddings-e-g-glove
+  bind: ./glove_dir/
+  path: /glove_dir/
+  read-only: true
+
 image=hazoi_docker:
   image: hazoi-docker
   context: hazoi-docker
