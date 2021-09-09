@@ -12,8 +12,8 @@ mai_lukdui = re.compile('（.+?）')
 def main():
     miang = '/ngienbun-ngiliau'
     makedirs(miang, exist_ok=True)
-    with open(join(miang, 'meu.all'), 'wt') as meu_dong:
-        with open(join(miang, 'fa.all'), 'wt') as fa_dong:
+    with open(join(miang, 'meu.txt'), 'wt') as meu_dong:
+        with open(join(miang, 'fa.txt'), 'wt') as fa_dong:
             for hang in ngin():
                 for meu, fa in zip(
                     hang['例句'].split('\n'), hang['翻譯'].split('\n')
