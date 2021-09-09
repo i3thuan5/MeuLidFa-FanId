@@ -1,8 +1,8 @@
 meta:
     project: opennmt
 
-alias=zunpi-ngiliau:
-  tasks: [hazoi-ngiliau, zunpi-ngiliau, ] #toncii, hiunlien]
+alias=qionpu: # 全部
+  tasks: [hazoi-ngiliau, don-ngiliau, zunpi-ngiliau, hiunlien, ]
 
 job=hazoi-ngiliau: # 下載語料
   use: hazoi_docker
@@ -12,7 +12,7 @@ job=hazoi-ngiliau: # 下載語料
     '
   mounts: [ngienbun_ngiliau, ]
 
-job=zunpi-giliau:
+job=don-ngiliau: # 斷詞斷字語料
   use: hazoi_docker
   command: |
     bash -eux -c '
@@ -51,24 +51,24 @@ image=opennmt_docker:
   image: opennmt-docker
   context: opennmt-docker
 
-job=taihua-preprocess:
+job=zunpi-ngiliau:
   use: opennmt_docker
   command: |
     bash -eux -c '
       onmt_preprocess \
-        -train_src /giliau/taigi.train \
-        -train_tgt /giliau/huagi.train \
-        -valid_src /giliau/taigi.valid \
-        -valid_tgt /giliau/huagi.valid \
+        -train_src /doncii-ngiliau/meu.train \
+        -train_tgt /doncii-ngiliau/fa.train \
+        -valid_src /doncii-ngiliau/meu.valid \
+        -valid_tgt /doncii-ngiliau/fa.valid \
         -save_data /data/
     '
   mounts: [doncii_ngiliau, opennmt_data]
 
-job=hunlian:
+job=hiunlien:
   use: opennmt_docker
   command: |
     bash -eux -c '
-      onmt_train -data /data/ -save_model /model/demo-model -gpu_ranks 0
+      onmt_train -data /data/ -save_model /model/meufa-model -gpu_ranks 0
     '
   mounts: [opennmt_data, opennmt_model]
 
