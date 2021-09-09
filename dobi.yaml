@@ -19,11 +19,11 @@ job=don-ngiliau: # 斷詞斷字語料
       cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
         | head -n 500 > /doncii-ngiliau/meu.valid
       cat /ngienbun-ngiliau/meu.txt | sed "s/\(.\)/\1 /g" \
-        | tail -n -500 > /doncii-ngiliau/meu.train
+        | tail -n +501 > /doncii-ngiliau/meu.train
       cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
         | head -n 500 > /doncii-ngiliau/fa.valid
       cat /ngienbun-ngiliau/fa.txt  | sed "s/\(.\)/\1 /g" \
-        | tail -n -500 > /doncii-ngiliau/fa.train
+        | tail -n +501 > /doncii-ngiliau/fa.train
     '
   mounts: [ngienbun_ngiliau, doncii_ngiliau, ]
 
@@ -56,10 +56,10 @@ job=zunpi-ngiliau:
   command: |
     bash -eux -c '
       onmt_preprocess \
-        -train_src /doncii-ngiliau/meu.train \
-        -train_tgt /doncii-ngiliau/fa.train \
-        -valid_src /doncii-ngiliau/meu.valid \
-        -valid_tgt /doncii-ngiliau/fa.valid \
+        -train_src /doncii-ngiliau/fa.train \
+        -train_tgt /doncii-ngiliau/meu.train \
+        -valid_src /doncii-ngiliau/fa.valid \
+        -valid_tgt /doncii-ngiliau/meu.valid \
         -save_data /data/
     '
   mounts: [doncii_ngiliau, opennmt_data]
