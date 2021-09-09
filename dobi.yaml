@@ -77,7 +77,7 @@ job=fan:
   command: |
     bash -eux -c '
       echo "詞 是 最 小 有 意 義 且 可 以 自 由 使 用 的 語 言 單 位" > fa.txt
-      echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" > fa.txt
+      echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" >> fa.txt
       echo "詞是最小有意義且可以自由使用的語言單位" >> fa.txt
       onmt_translate -model /model/meufa-model_step_100000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose # -gpu_ranks 0
       cat pred-meu.txt
