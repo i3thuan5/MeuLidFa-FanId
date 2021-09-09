@@ -72,7 +72,7 @@ job=hiunlien:
     '
   mounts: [opennmt_data, opennmt_model]
 
-job=huan:
+job=fan:
   use: opennmt_docker
   command: |
     bash -eux -c '
