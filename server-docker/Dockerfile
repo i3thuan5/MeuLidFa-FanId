@@ -14,6 +14,6 @@ COPY $CONFIG ./
 # Kah ENV PORT sio-kâng
 EXPOSE $PORT
 
-CMD python -m onmt.bin.server \
+CMD onmt_server \
   --ip $IP --port $PORT --url_root $URL_ROOT \
   --config $CONFIG
