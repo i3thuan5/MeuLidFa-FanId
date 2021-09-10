@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  onmt:
+    build: ./server-docker
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./4-opennmt-model/:/model:ro"
+    restart: always

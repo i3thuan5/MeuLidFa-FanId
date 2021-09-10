@@ -1,0 +1,16 @@
+{
+    "models_root": "/model",
+    "models": [
+        {
+            "id": 1,
+            "model": "fameu_step_3000.pt",
+            "timeout": 60,
+            "on_timeout": "unload",
+            "load": true,
+            "opt": {
+                "batch_size": 1,
+                "beam_size": 5
+            }
+        }
+    ]
+}
