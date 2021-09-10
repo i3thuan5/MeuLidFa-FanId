@@ -51,7 +51,7 @@ image=opennmt_docker:
   image: opennmt-docker
   context: opennmt-docker
 
-job=zunpi-ngiliau:
+job=zunpi-ngiliau: # 準備語料
   use: opennmt_docker
   command: |
     bash -eux -c '
@@ -59,7 +59,7 @@ job=zunpi-ngiliau:
     '
   mounts: [doncii_ngiliau, opennmt_data]
 
-job=hiunlien:
+job=hiunlien: # 訓練
   use: opennmt_docker
   command: |
     bash -eux -c '
@@ -71,10 +71,9 @@ job=fan:
   use: opennmt_docker
   command: |
     bash -eux -c '
-      echo "詞 是 最 小 有 意 義 且 可 以 自 由 使 用 的 語 言 單 位" > fa.txt
-      echo "詞 是 最 小 有 意義 且 可以 自由 使用 的 語言 單位" >> fa.txt
-      echo "詞是最小有意義且可以自由使用的語言單位" >> fa.txt
-      onmt_translate -model /model/meufa-model_step_100000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose # -gpu_ranks 0
+      echo "我 打 籃 球 時 手 扭 傷 ， 醫 生 說 要 打 石 膏 。" >> fa.txt
+      echo "黃 槿 樹 的 葉 子 ， 一 片 差 不 多 手 掌 一 般 大 。" >> fa.txt
+      onmt_translate -model /model/fameu-model_step_3000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose
       cat pred-meu.txt
     '
   mounts: [opennmt_data, opennmt_model]
