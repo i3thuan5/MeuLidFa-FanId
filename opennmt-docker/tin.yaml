@@ -20,7 +20,7 @@ world_size: 1
 gpu_ranks: [0]
 
 # Where to save the checkpoints
-save_model: /model/
+save_model: /model/fameu
 save_checkpoint_steps: 500
 train_steps: 20000
 valid_steps: 500
