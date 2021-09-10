@@ -73,7 +73,7 @@ job=fan:
     bash -eux -c '
       echo "我 打 籃 球 時 手 扭 傷 ， 醫 生 說 要 打 石 膏 。" >> fa.txt
       echo "黃 槿 樹 的 葉 子 ， 一 片 差 不 多 手 掌 一 般 大 。" >> fa.txt
-      onmt_translate -model /model/fameu-model_step_3000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose
+      onmt_translate -model /model/fameu_step_3000.pt -src fa.txt -output pred-meu.txt -replace_unk -verbose
       cat pred-meu.txt
     '
   mounts: [opennmt_data, opennmt_model]
