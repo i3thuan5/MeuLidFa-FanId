@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   onmt:
-    build: ./onmt
+    build: ./server-docker
     volumes:
       - "./onmt/available_models:/onmt/available_models"
     restart: always
