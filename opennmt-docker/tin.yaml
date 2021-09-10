@@ -1,8 +1,8 @@
 ## Where the samples will be written
-save_data: /data/run/meufa
+save_data: /data/meufa
 ## Where the vocab(s) will be written
-src_vocab: /data/run/meufa.vocab.src
-tgt_vocab: /data/run/meufa.vocab.tgt
+src_vocab: /data/meufa.vocab.src
+tgt_vocab: /data/meufa.vocab.tgt
 # Prevent overwriting existing files in the folder
 overwrite: False
 
@@ -20,7 +20,7 @@ world_size: 1
 gpu_ranks: [0]
 
 # Where to save the checkpoints
-save_model: toy-ende/run/model
-save_checkpoint_steps: 5000
-train_steps: 100000
-valid_steps: 10000
+save_model: /model/
+save_checkpoint_steps: 500
+train_steps: 20000
+valid_steps: 500
