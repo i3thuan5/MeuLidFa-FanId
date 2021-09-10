@@ -61,6 +61,12 @@ job=zunpi-ngiliau:
   use: opennmt_docker
   command: |
     bash -eux -c '
+      if [ -e glove_dir/glove.6B.100d.txt ]
+      then
+        mkdir "glove_dir" -p
+        wget http://nlp.stanford.edu/data/glove.6B.zip
+        unzip glove.6B.zip -d "glove_dir"
+      fi
       onmt_build_vocab -config tin.yaml -n_sample -1
     '
   mounts: [doncii_ngiliau, opennmt_data]
