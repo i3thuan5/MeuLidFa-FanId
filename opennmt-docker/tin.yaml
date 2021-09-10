@@ -21,9 +21,9 @@ gpu_ranks: [0]
 
 # Where to save the checkpoints
 save_model: toy-ende/run/model
-save_checkpoint_steps: 5000
-train_steps: 100000
-valid_steps: 10000
+save_checkpoint_steps: 1000
+train_steps: 20000
+valid_steps: 500
 
 # this means embeddings will be used for both encoder and decoder sides
 both_embeddings: /glove_dir/glove.6B.100d.txt
