@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 [1-9]*/
 .dobi/
+glove_dir/
+glove.6B.zip
