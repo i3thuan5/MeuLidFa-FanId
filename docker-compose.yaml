@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  onmt:
+    build: ./onmt
+    volumes:
+      - "./onmt/available_models:/onmt/available_models"
+    restart: always
+
+  
+networks:
+  nginx-bridge:
+    external: true
