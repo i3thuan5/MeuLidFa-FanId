@@ -10,6 +10,11 @@
 - 設定docker權限`sudo usermod -aG docker $USER`
 - 安裝[dobi](https://github.com/dnephin/dobi)
 
+#### 相關連結
+- https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit
+- https://github.com/OpenNMT/OpenNMT-py
+- https://opennmt.net/OpenNMT-py/
+
 ### 下載專案
 ```
 git clone git@github.com:i3thuan5/MeuLidFa-FanId.git

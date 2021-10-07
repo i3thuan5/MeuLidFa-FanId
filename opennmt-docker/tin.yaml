@@ -1,8 +1,8 @@
 ## Where the samples will be written
 save_data: /data/meufa
 ## Where the vocab(s) will be written
-src_vocab: /data/meufa.vocab.src
-tgt_vocab: /data/meufa.vocab.tgt
+src_vocab: /data/meufa.vocab.src.fa
+tgt_vocab: /data/meufa.vocab.tgt.meu
 # Prevent overwriting existing files in the folder
 overwrite: False
 
