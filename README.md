@@ -10,6 +10,11 @@
 - 設定docker權限`sudo usermod -aG docker $USER`
 - 安裝[dobi](https://github.com/dnephin/dobi)
 
+### 下載專案
+```
+git clone git@github.com:i3thuan5/MeuLidFa-FanId.git
+```
+
 ### 訓練
 `time dobi qionpu`
 
