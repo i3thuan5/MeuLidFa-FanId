@@ -21,10 +21,10 @@ git clone git@github.com:i3thuan5/MeuLidFa-FanId.git
 ```
 
 #### 若係無權，愛用ssh key代替密碼
-https://github.com/settings/keys
+
 
 1. 產生ssh key
-2. rsa_id.pub傳去github
+2. rsa_id.pub[傳去github](https://github.com/settings/keys)
 
 ### 訓練
 `time dobi qionpu`
