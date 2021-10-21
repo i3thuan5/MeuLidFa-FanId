@@ -95,8 +95,8 @@ alias=qionpu: # 全部
 #### 結果
 ```bash
 3-opennmt-data/
-├── meufa.vocab.src
-└── meufa.vocab.tgt
+├── meufa.vocab.src.fa
+└── meufa.vocab.tgt.meu
 ```
 
 ### 4. `job=hiunlien: # 訓練`
