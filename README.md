@@ -6,7 +6,7 @@
 ## 遽遽做
 ### 安裝
 - 安裝[Ubuntu Linux 20.04 LTS作業系統](https://ubuntu.com/download/desktop?version=20.04&architecture=amd64)
-- Nvidia cuda driver
+- [Nvidia cuda driver](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network)
 - 安裝[docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
 - 安裝[docker-compose](https://docs.docker.com/compose/install/)
 - 設定docker權限`sudo usermod -aG docker $USER`
