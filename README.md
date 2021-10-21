@@ -1,6 +1,8 @@
 # MeuLidFa-FanId
 苗栗話翻譯
 
+## 苗栗話翻譯試做1021
+
 ## 遽遽做
 ### 安裝
 - 安裝[Ubuntu Linux 20.04 LTS作業系統](https://ubuntu.com/download/desktop?version=20.04&architecture=amd64)
