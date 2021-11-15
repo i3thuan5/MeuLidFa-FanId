@@ -29,10 +29,10 @@ def ngin():
     github_bangtsi = ('https://raw.githubusercontent.com/'
                       'i3thuan5/Elearning-Hakka/main/csv_imtong/')
     jintsing_sului = [
-        f'{github_bangtsi}rh3-2.csv',
-        f'{github_bangtsi}rh3-1.csv',
-        f'{github_bangtsi}rhw.csv',
-    ]
+        f'{github_bangtsi}zh3-2.csv',
+        f'{github_bangtsi}zh3-1.csv',
+        f'{github_bangtsi}zhw.csv',
+    ] 
     for bangtsi in jintsing_sului:
         with urlopen(bangtsi) as tong:
             with io.StringIO(tong.read().decode('utf-8')) as tsuliau:
