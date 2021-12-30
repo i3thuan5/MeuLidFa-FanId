@@ -6,11 +6,25 @@
 ## 遽遽做
 ### 安裝
 - 安裝[Ubuntu Linux 20.04 LTS作業系統](https://ubuntu.com/download/desktop?version=20.04&architecture=amd64)
-- [Nvidia cuda driver](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network)
 - 安裝[docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
 - 安裝[docker-compose](https://docs.docker.com/compose/install/)
 - 設定docker權限`sudo usermod -aG docker $USER`
 - 安裝[dobi](https://github.com/dnephin/dobi)
+- 安裝[Nvidia cuda driver](https://phoenixnap.com/kb/install-nvidia-drivers-ubuntu#ftoc-heading-6)
+- 安裝[Setting up NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit)
+- `/etc/docker/daemon.json`內設定`default-runtime`係`nvidia`
+```
+{
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+```
+- `docker`重開`sudo systemctl restart docker`
 
 #### 相關連結
 - [Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit)
