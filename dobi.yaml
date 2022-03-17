@@ -77,3 +77,15 @@ job=fan:
       cat pred-meu.txt
     '
   mounts: [opennmt_data, opennmt_model]
+
+job=fan-bleu:
+  use: opennmt_docker
+  command: |
+    bash -eux -c '
+      onmt_translate -model /model/fameu_step_3000.pt \
+        -src /doncii-ngiliau/fa.valid \
+        -output pred-meu.txt \
+        -replace_unk -verbose
+      cat pred-meu.txt
+    '
+  mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
