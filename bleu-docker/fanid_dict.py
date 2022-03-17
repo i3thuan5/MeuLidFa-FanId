@@ -39,12 +39,9 @@ if __name__ == '__main__':
     parser.add_argument('meu', help='Meu-lid txt')
     args = parser.parse_args()
 
-    # gied = dataraw(['多國語言有聲版',' 多國語言有聲版'])
-    # print(gied)
-
     with open(args.fa) as fa_dong:
         with open(args.meu, 'w') as meu_dong:
             print(
-                fanid(fa_dong.readlines()[:3]),
+                fanid(fa_dong.readlines()),
                 file=meu_dong
             )
