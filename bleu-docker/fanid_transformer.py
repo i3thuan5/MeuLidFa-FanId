@@ -17,6 +17,7 @@ def fanid(fa):
     }
     lian.request("POST", "/py/transformer.py", tsuliau, header)
     giedgo = lian.getresponse().read()
+    print('giedgo', giedgo)
     huein = json.loads(giedgo)
     return huein['output']
 
