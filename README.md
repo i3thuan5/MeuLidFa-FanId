@@ -127,3 +127,60 @@ alias=qionpu: # 全部
 ├── fameu_step_11000.pt
 ...
 ```
+
+## 分析效果：BLEU
+- Bilingual Evaluation Understudy（雙語評估），學術界摎工業界有用。
+- [機器翻譯評價指標BLEU介紹](https://www.twblogs.net/a/5d668fd5bd9eee541c3357e8)
+
+### 指令
+```
+time dobi bleu
+```
+評估訓練模型效果。
+
+#### BLEU成績
+```
+BLEU = 32.46, 67.3/43.3/29.5/20.0 (BP=0.896, ratio=0.901, hyp_len=8058, ref_len=8940)
+```
+預設是`STEP=3000`，評估訓練3000 STEP个模型效果分數係`32.46`，滿分`100.0`，分數範圍`0.0~100.0`。
+
+### 其他STEP
+預設是`STEP=3000`，做得看評估別个`STEP`个模型效果。
+
+```
+STEP=4000 time dobi bleu
+```
+
+```
+BLEU = 33.19, 65.3/41.8/28.4/19.4 (BP=0.948, ratio=0.949, hyp_len=8486, ref_len=8940)
+```
+
+`STEP=4000`分數`33.19`比`STEP=3000`分數`32.46`好。
+
+#### STEP=5000
+```
+STEP=5000 time dobi bleu
+```
+
+```
+BLEU = 33.60, 66.8/43.4/29.8/20.6 (BP=0.921, ratio=0.924, hyp_len=8260, ref_len=
+8940)
+```
+
+`STEP=5000`分數`33.60`比`STEP=4000`分數`33.19`好。
+
+#### STEP=6000
+
+```
+STEP=6000 time dobi bleu
+```
+
+```
+BLEU = 32.98, 66.2/42.2/28.7/19.6 (BP=0.931, ratio=0.933, hyp_len=8341, ref_len=
+8940)
+```
+
+`STEP=6000`分數`32.98`比`STEP=5000`分數`33.60`差。
+
+#### 結論
+`STEP=5000`分數`33.60`盡高，故所上線模型選`STEP=5000`个。上線設定`server-docker/tin.json`就愛改`"model": "fameu_step_5000.pt",`，正`docker-compose up -d --build`
