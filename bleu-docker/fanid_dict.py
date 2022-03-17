@@ -1,8 +1,7 @@
+import argparse
 from http.client import HTTPConnection
 from urllib.parse import urlencode
-from urllib.parse import quote
 import json
-
 
 
 def fanid(fa):
@@ -18,11 +17,8 @@ def fanid(fa):
     }
     lian.request("POST", "/py/translate.py", tsuliau, header)
     giedgo = lian.getresponse().read()
-    print('tsuliau',tsuliau)
-    print('giedgo', giedgo)
     huein = json.loads(giedgo)
-    print('\033[94m', huein)
-    return huein['output']
+    return huein['output'].split('\n')
 
 
 def dataraw(fa):
@@ -37,6 +33,18 @@ def dataraw(fa):
 
 
 if __name__ == '__main__':
-    gied = dataraw(['多國語言有聲版',' 多國語言有聲版'])
-    print(gied)
-    # fanid(['多國語言有聲版',' 多國語言有聲版'])
+
+    parser = argparse.ArgumentParser(description='Jī-bōo tsuán su-siá.')
+    parser.add_argument("fa", help="Fa-ngi txt")
+    parser.add_argument('meu', help='Meu-lid txt')
+    args = parser.parse_args()
+
+    # gied = dataraw(['多國語言有聲版',' 多國語言有聲版'])
+    # print(gied)
+
+    with open(args.fa) as fa_dong:
+        with open(args.meu, 'w') as meu_dong:
+            print(
+                fanid(fa_dong.readlines()),
+                file=meu_dong
+            )

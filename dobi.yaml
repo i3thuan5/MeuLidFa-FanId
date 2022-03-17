@@ -119,18 +119,20 @@ job=bleu-fan-dict:
   use: bleu_docker
   command: |
     bash -eux -c "
-      python fanid_dict.py > dataraw
-      cat dataraw
-      echo 'page_name=hakkadic&input_lang=zh-tw&input_txt=%E5%A4%9A%E5%9C%8B%E8%AA%9E%E8%A8%80%E6%9C%89%E8%81%B2%E7%89%88%0A%E5%A4%9A%E5%9C%8B%E8%AA%9E%E8%A8%80%E6%9C%89%E8%81%B2%E7%89%88'
-      curl 'http://ai49.gohakka.org/py/translate.py' \
-        -X POST \
-        -H 'Accept: */*' \
-        -H 'Accept-Language: zh-TW,zh;q=0.8,en-US;q=0.5,en;q=0.3' \
-        -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
-        -H 'Origin: http://ai49.gohakka.org' \
-        -H 'Referer: http://ai49.gohakka.org/' \
-        --data-raw `cat dataraw` \
-        > /bleu/meu.dict.pred
+      # python fanid_dict.py > dataraw
+      # cat dataraw
+      # echo 'page_name=hakkadic&input_lang=zh-tw&input_txt=%E5%A4%9A%E5%9C%8B%E8%AA%9E%E8%A8%80%E6%9C%89%E8%81%B2%E7%89%88%0A%E5%A4%9A%E5%9C%8B%E8%AA%9E%E8%A8%80%E6%9C%89%E8%81%B2%E7%89%88'
+      # curl 'http://ai49.gohakka.org/py/translate.py' \
+      #   -X POST \
+      #   -H 'Accept: */*' \
+      #   -H 'Accept-Language: zh-TW,zh;q=0.8,en-US;q=0.5,en;q=0.3' \
+      #   -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+      #   -H 'Origin: http://ai49.gohakka.org' \
+      #   -H 'Referer: http://ai49.gohakka.org/' \
+      #   --data-raw `cat dataraw` \
+      #   > /bleu/meu.dict.pred
+
+      python fanid_dict.py /doncii-ngiliau/fa.valid /bleu/meu.dict.pred
       head /bleu/meu.dict.pred
     "
   mounts: [doncii_ngiliau, bleu_data, ]
