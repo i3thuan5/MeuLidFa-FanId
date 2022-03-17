@@ -183,4 +183,5 @@ BLEU = 32.98, 66.2/42.2/28.7/19.6 (BP=0.931, ratio=0.933, hyp_len=8341, ref_len=
 `STEP=6000`分數`32.98`比`STEP=5000`分數`33.60`差。
 
 #### 結論
+
 `STEP=5000`分數`33.60`盡高，故所上線模型選`STEP=5000`个。上線設定`server-docker/tin.json`就愛改`"model": "fameu_step_5000.pt",`，正`docker-compose up -d --build`
