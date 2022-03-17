@@ -98,7 +98,7 @@ job=bleu-fan:
       onmt_translate -model /model/fameu_step_$STEP.pt \
         -src /doncii-ngiliau/fa.valid \
         -output /bleu/meu.$STEP.pred \
-        -replace_unk -verbose
+        -replace_unk
       head /bleu/meu.$STEP.pred
     '
   mounts: [doncii_ngiliau, bleu_data, opennmt_model]

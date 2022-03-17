@@ -127,3 +127,21 @@ alias=qionpu: # 全部
 ├── fameu_step_11000.pt
 ...
 ```
+
+## 分析效果
+```
+time dobi bleu
+```
+### BLEU成績
+```
+BLEU = 32.46, 67.3/43.3/29.5/20.0 (BP=0.896, ratio=0.901, hyp_len=8058, ref_len=8940)
+```
+### 其他STEP
+
+```
+STEP=4000 time dobi bleu
+```
+
+```
+BLEU = 33.19, 65.3/41.8/28.4/19.4 (BP=0.948, ratio=0.949, hyp_len=8486, ref_len=8940)
+```
