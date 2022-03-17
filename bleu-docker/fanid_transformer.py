@@ -15,7 +15,7 @@ def fanid(fa):
         'Origin': 'http://ai49.gohakka.org',
         'Referer': 'http://ai49.gohakka.org/',
     }
-    lian.request("POST", "/py/translate.py", tsuliau, header)
+    lian.request("POST", "/py/transformer.py", tsuliau, header)
     giedgo = lian.getresponse().read()
     huein = json.loads(giedgo)
     return huein['output']
