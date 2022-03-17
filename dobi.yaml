@@ -118,11 +118,11 @@ job=bleu-son:
 job=bleu-fan-dict:
   use: bleu_docker
   command: |
-    bash -eux -c "
+    bash -eux -c '
       python fanid_dict.py /doncii-ngiliau/fa.valid meu.dict.pred
       cat meu.dict.pred | sed "s/\(.\)/\1 /g" \
         > /bleu/meu.dict.pred
       head /bleu/meu.dict.pred
-    "
+    '
   mounts: [doncii_ngiliau, bleu_data, ]
 
