@@ -185,3 +185,11 @@ BLEU = 32.98, 66.2/42.2/28.7/19.6 (BP=0.931, ratio=0.933, hyp_len=8341, ref_len=
 #### 結論
 
 `STEP=5000`分數`33.60`盡高，故所上線模型選`STEP=5000`个。上線設定`server-docker/tin.json`就愛改`"model": "fameu_step_5000.pt",`，正`docker-compose up -d --build`
+
+### 辭典版翻譯分析
+```
+time dobi bleu-dict
+```
+```
+BLEU = 34.42, 65.0/41.2/28.0/18.7 (BP=1.000, ratio=1.070, hyp_len=9567, ref_len=8940)
+```
