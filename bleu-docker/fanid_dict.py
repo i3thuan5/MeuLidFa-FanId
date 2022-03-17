@@ -1,22 +1,12 @@
 from http.client import HTTPConnection
+from urllib.parse import urlencode
 from urllib.parse import quote
 import json
 
 
+
 def fanid(fa):
-    '''
-    - model_id = 2  # Huâ-tâi huanik boo-hing id
-      Khuànn `onmt/tsuki/conf.json`
-    '''
-    post_fa = []
-    for tsua in fa:
-        post_fa.append(''.join(tsua.split()))
-    from urllib.parse import urlencode
-    tsuliau = json.dumps(urlencode({
-        'page_name': 'hakkadic',
-        'input_lang': 'zh-tw',
-        'input_txt': quote('\n'.join(post_fa))
-    }))
+    tsuliau = dataraw(fa)
 
     lian = HTTPConnection('ai49.gohakka.org', port=80)
     header = {
@@ -35,4 +25,18 @@ def fanid(fa):
     return huein['output']
 
 
-fanid(['多國語言有聲版',' 多國語言有聲版'])
+def dataraw(fa):
+    post_fa = []
+    for tsua in fa:
+        post_fa.append(''.join(tsua.split()))
+    return urlencode({
+        'page_name': 'hakkadic',
+        'input_lang': 'zh-tw',
+        'input_txt': '\n'.join(post_fa)
+    })
+
+
+if __name__ == '__main__':
+    gied = dataraw(['多國語言有聲版',' 多國語言有聲版'])
+    print(gied)
+    # fanid(['多國語言有聲版',' 多國語言有聲版'])
