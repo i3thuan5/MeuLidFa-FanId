@@ -78,7 +78,14 @@ job=fan:
     '
   mounts: [opennmt_data, opennmt_model]
 
-job=fan-bleu:
+image=bleu_docker:
+  image: bleu-docker
+  context: bleu-docker
+
+alias=bleu: # 全部
+  tasks: [bleu-fan, bleu-son, ]
+
+job=bleu-fan:
   use: opennmt_docker
   command: |
     bash -eux -c '
@@ -87,5 +94,15 @@ job=fan-bleu:
         -output pred-meu.txt \
         -replace_unk -verbose
       cat pred-meu.txt
+    '
+  mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
+
+job=bleu-son:
+  use: bleu_docker
+  command: |
+    bash -eux -c '
+      perl multi-bleu-detok.perl \
+        /doncii-ngiliau/meu.valid \
+        < pred-meu.txt
     '
   mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
