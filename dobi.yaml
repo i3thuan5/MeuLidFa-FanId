@@ -86,7 +86,7 @@ image=bleu_docker:
   image: bleu-docker
   context: bleu-docker
 
-alias=bleu: # 全部
+alias=bleu:
   tasks: [bleu-fan, bleu-son, ]
 
 job=bleu-fan:
@@ -103,6 +103,13 @@ job=bleu-fan:
     '
   mounts: [doncii_ngiliau, bleu_data, opennmt_model]
 
+alias=bleu-dict:
+  tasks: [dict-sadtin, bleu-fan-dict, bleu-son, ]
+
+env=dict-sadtin:
+  variables:
+  - STEP=dict
+
 job=bleu-son:
   use: bleu_docker
   env:
@@ -114,3 +121,15 @@ job=bleu-son:
         < /bleu/meu.$STEP.pred
     '
   mounts: [doncii_ngiliau, bleu_data]
+
+job=bleu-fan-dict:
+  use: bleu_docker
+  command: |
+    bash -eux -c '
+      python fanid_dict.py /doncii-ngiliau/fa.valid meu.dict.pred
+      cat meu.dict.pred | sed "s/\(.\)/\1 /g" \
+        > /bleu/meu.dict.pred
+      head /bleu/meu.dict.pred
+    '
+  mounts: [doncii_ngiliau, bleu_data, ]
+
