@@ -43,6 +43,10 @@ mount=opennmt_model:
   bind: ./4-opennmt-model/
   path: /model/
 
+mount=bleu_data:
+  bind: ./5-bleu-data/
+  path: /bleu/
+
 image=hazoi_docker:
   image: hazoi-docker
   context: hazoi-docker
@@ -87,22 +91,26 @@ alias=bleu: # 全部
 
 job=bleu-fan:
   use: opennmt_docker
+  env:
+  - STEP={env.STEP:3000}
   command: |
     bash -eux -c '
-      onmt_translate -model /model/fameu_step_3000.pt \
+      onmt_translate -model /model/fameu_step_$STEP.pt \
         -src /doncii-ngiliau/fa.valid \
-        -output pred-meu.txt \
+        -output /bleu/meu.$STEP.pred \
         -replace_unk -verbose
-      cat pred-meu.txt
+      head /bleu/meu.$STEP.pred
     '
-  mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
+  mounts: [doncii_ngiliau, bleu_data, opennmt_model]
 
 job=bleu-son:
   use: bleu_docker
+  env:
+  - STEP={env.STEP:3000}
   command: |
     bash -eux -c '
       perl multi-bleu-detok.perl \
         /doncii-ngiliau/meu.valid \
-        < pred-meu.txt
+        < /bleu/meu.$STEP.pred
     '
-  mounts: [doncii_ngiliau, opennmt_data, opennmt_model]
+  mounts: [doncii_ngiliau, bleu_data]
