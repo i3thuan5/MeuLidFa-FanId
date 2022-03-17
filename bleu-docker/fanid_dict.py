@@ -18,7 +18,7 @@ def fanid(fa):
     lian.request("POST", "/py/translate.py", tsuliau, header)
     giedgo = lian.getresponse().read()
     huein = json.loads(giedgo)
-    return huein['output'].split('\n')
+    return huein['output']
 
 
 def dataraw(fa):
@@ -45,6 +45,6 @@ if __name__ == '__main__':
     with open(args.fa) as fa_dong:
         with open(args.meu, 'w') as meu_dong:
             print(
-                fanid(fa_dong.readlines()),
+                fanid(fa_dong.readlines()[:3]),
                 file=meu_dong
             )
